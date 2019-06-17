@@ -14,9 +14,10 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Post::class, function (Faker $faker) {
+    $cat = ['cat1', 'cat2', 'cat3'];
     return [
         'title' => $faker->realText($maxNbChars = 80, $indexSize = 2),
         'description' => $faker->realText($maxNbChars = 160, $indexSize = 2),
-        'tags' => $faker->text,
+        'tags' => implode( [ $cat[array_rand( $cat ) ] . ',', $cat[array_rand( $cat )] ] ),
     ];
 });

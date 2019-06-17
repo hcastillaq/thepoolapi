@@ -49,9 +49,9 @@ $router->post('/posts/query', function(Request $request){
     try{
         $query = $request->input('query');
         #$results = Post::where('description', 'LIKE', "%$query%")->get();
-        $sql = "match(title, description) against('$query*' in boolean mode)";
-        $posts = Post::whereRaw($sql)->get();
-        return response()->json(compact("posts"));
+        $sql = "match(title, description, tags) against('$query*' in boolean mode)";
+        $results = Post::whereRaw($sql)->get();
+        return response()->json(compact("results"));
     }catch(Exception $e){
         return response()->json(['error'=> 'invalid request'], 400);
     }

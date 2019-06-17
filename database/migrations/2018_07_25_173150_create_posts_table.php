@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE posts ADD FULLTEXT(description,title)');
+        DB::statement('ALTER TABLE posts ADD FULLTEXT(description,title,tags)');
     }
 
     /**
